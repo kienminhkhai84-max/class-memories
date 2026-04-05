@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Kỷ Niệm Lớp</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+:root{--bg:#FFF8F0;--bg2:#FFF1E3;--bg3:#FFE8D1;--card:#FFF;--text:#2D1810;--text2:#6B4C3B;--text3:#9B7B6B;--accent:#E07A5F;--accent2:#F2A365;--accent3:#81B29A;--accent4:#3D405B;--danger:#E45B5B;--shadow:0 2px 16px rgba(45,24,16,.08);--shadow2:0 8px 32px rgba(45,24,16,.12);--radius:16px;--radius2:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body,#root{font-family:'Google Sans','Google Sans Text',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.app-wrap{min-height:100vh;background:var(--bg);background-image:radial-gradient(ellipse at 10% 20%,rgba(224,122,95,.06) 0%,transparent 50%),radial-gradient(ellipse at 90% 80%,rgba(129,178,154,.06) 0%,transparent 50%)}
+.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#FFF8F0 0%,#FFE8D1 50%,#FFF1E3 100%);background-size:400% 400%;animation:gradBg 12s ease infinite}
+@keyframes gradBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.auth-card{background:var(--card);border-radius:24px;padding:48px 40px;width:100%;max-width:420px;box-shadow:var(--shadow2);text-align:center;animation:fadeUp .6s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.auth-card h1{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:28px;margin-bottom:4px}
+.auth-card .subtitle{font-family:'Google Sans',sans-serif;font-style:italic;font-size:18px;color:var(--accent);margin-bottom:32px}
+.auth-card .decor{font-size:48px;margin-bottom:16px;display:block}
+.form-group{margin-bottom:18px;text-align:left}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.form-input{width:100%;padding:12px 16px;border:2px solid var(--bg3);border-radius:var(--radius2);font-size:15px;font-family:inherit;background:var(--bg);color:var(--text);transition:all .2s;outline:none}
+.form-input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(224,122,95,.1)}
+.btn{padding:12px 28px;border:none;border-radius:var(--radius2);font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--accent);color:#fff;width:100%;justify-content:center}
+.btn-primary:hover{background:#c96a50;transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-secondary{background:var(--bg2);color:var(--text2)}.btn-secondary:hover{background:var(--bg3)}
+.btn-danger{background:var(--danger);color:#fff}.btn-danger:hover{background:#c94444}
+.btn-accent3{background:var(--accent3);color:#fff}.btn-accent3:hover{background:#6a9b82}
+.btn-sm{padding:8px 16px;font-size:13px}.btn-xs{padding:5px 12px;font-size:12px;border-radius:8px}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.auth-switch{margin-top:20px;font-size:14px;color:var(--text3)}
+.auth-switch span{color:var(--accent);cursor:pointer;font-weight:600}.auth-switch span:hover{text-decoration:underline}
+.error-msg{background:#FFF0F0;color:var(--danger);padding:10px;border-radius:8px;font-size:13px;margin-bottom:16px}
+.navbar{background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--bg3);padding:0 24px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-brand{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:20px;font-weight:700;display:flex;align-items:center;gap:8px}.nav-brand span{font-size:24px}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{padding:8px 16px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .2s;border:none;background:none;font-family:inherit}
+.nav-link:hover{background:var(--bg2);color:var(--text)}.nav-link.active{background:var(--accent);color:#fff}
+.nav-user{display:flex;align-items:center;gap:12px}
+.nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent3);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.nav-logout{font-size:13px;color:var(--text3);cursor:pointer;border:none;background:none;font-family:inherit}.nav-logout:hover{color:var(--danger)}
+.mobile-nav-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text)}
+@media(max-width:768px){.mobile-nav-toggle{display:block}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;flex-direction:column;padding:12px;border-bottom:1px solid var(--bg3);box-shadow:var(--shadow)}.nav-links.open{display:flex}.nav-user{gap:8px}}
+.main{padding:32px 24px;max-width:1200px;margin:0 auto}@media(max-width:768px){.main{padding:20px 16px}}
+.section-title{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:32px;margin-bottom:8px}
+.section-subtitle{color:var(--text3);font-size:15px;margin-bottom:32px}
+.profiles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px}@media(max-width:500px){.profiles-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.profile-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all .3s;animation:fadeUp .5s ease backwards}.profile-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
+.profile-img-wrap{width:100%;aspect-ratio:1;overflow:hidden;background:var(--bg2);display:flex;align-items:center;justify-content:center;position:relative}
+.profile-img-wrap img{width:100%;height:100%;object-fit:cover}.profile-placeholder{font-size:48px;color:var(--text3)}
+.profile-info{padding:14px 16px;text-align:center}
+.profile-name{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:16px;font-weight:600}
+.profile-nick{font-size:13px;color:var(--text3);margin-top:2px}
+.add-form{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:28px}
+.add-form-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}.add-form-row .form-group{flex:1;min-width:150px;margin-bottom:0}
+.upload-area{background:var(--card);border:2px dashed var(--bg3);border-radius:var(--radius);padding:40px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:28px}.upload-area:hover{border-color:var(--accent);background:var(--bg2)}
+.upload-area .icon{font-size:40px;margin-bottom:8px}.upload-area p{color:var(--text3);font-size:14px}
+.memories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}@media(max-width:500px){.memories-grid{grid-template-columns:1fr;gap:16px}}
+.memory-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);animation:fadeUp .5s ease backwards;transition:transform .3s}.memory-card:hover{transform:translateY(-2px)}
+.memory-img-wrap{width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--bg2);cursor:pointer;position:relative}
+.memory-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}.memory-card:hover .memory-img-wrap img{transform:scale(1.03)}
+.memory-meta{padding:14px 16px 8px;display:flex;justify-content:space-between;align-items:center}
+.memory-uploader{font-size:13px;color:var(--text3)}.memory-date{font-size:12px;color:var(--text3)}
+.memory-delete{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:4px;border-radius:6px}.memory-delete:hover{color:var(--danger);background:#fff0f0}
+.reactions-bar{padding:4px 16px 8px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.reaction-btn{background:var(--bg);border:1.5px solid var(--bg3);border-radius:20px;padding:4px 10px;font-size:14px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:4px}
+.reaction-btn:hover{border-color:var(--accent);background:var(--bg2)}.reaction-btn.active{border-color:var(--accent);background:rgba(224,122,95,.1)}
+.reaction-btn .count{font-size:12px;color:var(--text2)}
+.add-reaction-btn{background:none;border:1.5px dashed var(--bg3);border-radius:20px;padding:4px 10px;font-size:16px;cursor:pointer;color:var(--text3);position:relative}.add-reaction-btn:hover{border-color:var(--accent);color:var(--accent)}
+.emoji-picker{position:absolute;bottom:36px;left:0;background:#fff;border-radius:12px;padding:8px;box-shadow:var(--shadow2);display:flex;gap:4px;z-index:50}
+.emoji-picker button{background:none;border:none;font-size:20px;cursor:pointer;padding:4px;border-radius:6px;transition:background .15s}.emoji-picker button:hover{background:var(--bg2)}
+.comments-section{padding:0 16px 14px;border-top:1px solid var(--bg2)}
+.comments-toggle{background:none;border:none;color:var(--text3);font-size:13px;cursor:pointer;padding:8px 0;font-family:inherit}.comments-toggle:hover{color:var(--accent)}
+.comment-list{max-height:200px;overflow-y:auto;margin-bottom:8px}
+.comment-item{padding:8px 0;border-bottom:1px solid var(--bg);display:flex;gap:8px;align-items:flex-start;animation:fadeUp .3s ease}
+.comment-avatar{width:28px;height:28px;border-radius:50%;background:var(--accent2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.comment-body{flex:1;min-width:0}.comment-author{font-size:13px;font-weight:600}.comment-text{font-size:13px;color:var(--text2);margin-top:2px;word-break:break-word}.comment-time{font-size:11px;color:var(--text3);margin-top:2px}
+.comment-input-wrap{display:flex;gap:8px}
+.comment-input{flex:1;padding:8px 12px;border:1.5px solid var(--bg3);border-radius:20px;font-size:13px;font-family:inherit;outline:none;background:var(--bg)}.comment-input:focus{border-color:var(--accent);background:#fff}
+.comment-send{background:var(--accent);color:#fff;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.comment-send:hover{background:#c96a50}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:32px;cursor:pointer}
+.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.dash-card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.dash-card h3{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:18px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-item{background:var(--bg);border-radius:var(--radius2);padding:16px;text-align:center}
+.stat-val{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:28px;font-weight:700;color:var(--accent)}
+.stat-label{font-size:12px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.storage-bar{height:12px;background:var(--bg);border-radius:6px;overflow:hidden;margin:12px 0}
+.storage-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent));border-radius:6px;transition:width .5s}
+.user-list-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bg)}.user-list-item:last-child{border-bottom:none}
+.user-info-row{display:flex;align-items:center;gap:10px}
+.role-badge{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:600;text-transform:uppercase}
+.role-owner{background:#FFF3CD;color:#856404}.role-admin{background:#CCE5FF;color:#004085}.role-member{background:#D4EDDA;color:#155724}
+.role-toggle{background:none;border:1.5px solid var(--bg3);border-radius:8px;padding:4px 10px;font-size:12px;font-family:inherit;cursor:pointer;color:var(--text2);transition:all .15s}.role-toggle:hover{border-color:var(--accent);color:var(--accent);background:rgba(224,122,95,.05)}
+.comment-manage-item{padding:10px 0;border-bottom:1px solid var(--bg);font-size:13px}
+.config-group{margin-bottom:16px}
+.config-group label{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px}
+.config-input{width:100%;padding:8px 12px;border:1.5px solid var(--bg3);border-radius:8px;font-size:13px;font-family:inherit;background:var(--bg);outline:none}.config-input:focus{border-color:var(--accent)}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--accent4);color:#fff;padding:12px 20px;border-radius:var(--radius2);font-size:14px;z-index:2000;animation:fadeUp .3s ease;box-shadow:var(--shadow2)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-state .icon{font-size:64px;margin-bottom:12px}
+.empty-state h3{font-family:'Google Sans Display','Google Sans',sans-serif;font-size:20px;margin-bottom:8px;color:var(--text2)}
+.spinner{display:inline-block;width:20px;height:20px;border:2.5px solid var(--bg3);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px}
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+const {useState,useEffect,useRef,useCallback}=React;
+const EMOJI_LIST=["❤️","😂","😍","👏","🔥","😢","🎉","💯"];
+
+// ─── API Client ───
+const API = {
+  token: localStorage.getItem('cm-token'),
+  setToken(t){this.token=t;t?localStorage.setItem('cm-token',t):localStorage.removeItem('cm-token')},
+  async req(path,opts={}){
+    const headers={...opts.headers};
+    if(this.token)headers['Authorization']='Bearer '+this.token;
+    if(opts.body&&!(opts.body instanceof FormData)){headers['Content-Type']='application/json';opts.body=JSON.stringify(opts.body)}
+    const r=await fetch('/api'+path,{...opts,headers});
+    const data=await r.json().catch(()=>null);
+    if(!r.ok)throw new Error(data?.error||'Lỗi server');
+    return data;
+  },
+  get(p){return this.req(p)},
+  post(p,b){return this.req(p,{method:'POST',body:b})},
+  del(p){return this.req(p,{method:'DELETE'})},
+  patch(p,b){return this.req(p,{method:'PATCH',body:b})},
+  upload(p,formData){return this.req(p,{method:'POST',body:formData})},
+};
+
+function imgUrl(key){return key?'/api/images/'+encodeURIComponent(key):null}
+
+// ─── Components ───
+function Toast({msg}){return msg?<div className="toast">{msg}</div>:null}
+function Lightbox({src,onClose}){return src?<div className="lightbox" onClick={onClose}><button className="lightbox-close" onClick={onClose}>✕</button><img src={src} alt="" onClick={e=>e.stopPropagation()}/></div>:null}
+
+function EmojiPicker({onSelect,onClose}){
+  const ref=useRef();
+  useEffect(()=>{const h=e=>{if(ref.current&&!ref.current.contains(e.target))onClose()};document.addEventListener("mousedown",h);return()=>document.removeEventListener("mousedown",h)},[onClose]);
+  return <div className="emoji-picker" ref={ref}>{EMOJI_LIST.map(e=><button key={e} onClick={()=>onSelect(e)}>{e}</button>)}</div>;
+}
+
+function MemoryCard({mem,user,comments,reactions,onComment,onReact,onDelete,onImageClick}){
+  const [showComments,setShowComments]=useState(false);
+  const [commentText,setCommentText]=useState("");
+  const [showEmoji,setShowEmoji]=useState(false);
+  const [sending,setSending]=useState(false);
+  const memComments=comments.filter(c=>c.memory_id===mem.id);
+  const memReactions=reactions.filter(r=>r.memory_id===mem.id);
+  const grouped={};
+  memReactions.forEach(r=>{if(!grouped[r.emoji])grouped[r.emoji]={emoji:r.emoji,users:[],count:0};grouped[r.emoji].users.push(r.username);grouped[r.emoji].count++});
+  const handleSend=async()=>{
+    if(!commentText.trim()||sending)return;setSending(true);
+    await onComment(mem.id,commentText.trim());setCommentText("");setSending(false);
+  };
+  const isAdmin=user.role==="owner"||user.role==="admin";
+  const src=imgUrl(mem.image_key);
+  return(
+    <div className="memory-card">
+      <div className="memory-img-wrap" onClick={()=>onImageClick(src)}><img src={src} alt="" loading="lazy"/></div>
+      <div className="memory-meta">
+        <span className="memory-uploader">📸 {mem.uploader}</span>
+        <span style={{display:"flex",alignItems:"center",gap:8}}>
+          <span className="memory-date">{new Date(mem.created_at).toLocaleDateString("vi-VN")}</span>
+          {(isAdmin||mem.uploader===user.username)&&<button className="memory-delete" onClick={()=>onDelete(mem.id)} title="Xoá">🗑️</button>}
+        </span>
+      </div>
+      <div className="reactions-bar">
+        {Object.values(grouped).map(g=><button key={g.emoji} className={"reaction-btn"+(g.users.includes(user.username)?" active":"")} onClick={()=>onReact(mem.id,g.emoji)}>{g.emoji} <span className="count">{g.count}</span></button>)}
+        <div style={{position:"relative",display:"inline-flex"}}>
+          <button className="add-reaction-btn" onClick={()=>setShowEmoji(!showEmoji)}>😊</button>
+          {showEmoji&&<EmojiPicker onSelect={e=>{onReact(mem.id,e);setShowEmoji(false)}} onClose={()=>setShowEmoji(false)}/>}
+        </div>
+      </div>
+      <div className="comments-section">
+        <button className="comments-toggle" onClick={()=>setShowComments(!showComments)}>💬 {memComments.length} bình luận {showComments?"▲":"▼"}</button>
+        {showComments&&<>
+          <div className="comment-list">
+            {memComments.map(c=><div className="comment-item" key={c.id}><div className="comment-avatar">{c.username[0].toUpperCase()}</div><div className="comment-body"><div className="comment-author">{c.username}</div><div className="comment-text">{c.text}</div><div className="comment-time">{new Date(c.created_at).toLocaleString("vi-VN")}</div></div></div>)}
+            {memComments.length===0&&<div style={{fontSize:13,color:"var(--text3)",padding:"8px 0"}}>Chưa có bình luận nào</div>}
+          </div>
+          <div className="comment-input-wrap">
+            <input className="comment-input" placeholder="Viết bình luận..." value={commentText} onChange={e=>setCommentText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&handleSend()}/>
+            <button className="comment-send" onClick={handleSend} disabled={sending}>{sending?<span className="spinner"/>:"➤"}</button>
+          </div>
+        </>}
+      </div>
+    </div>
+  );
+}
+
+function AdminDashboard({user,onRefresh,showToast}){
+  const [stats,setStats]=useState(null);
+  const [users,setUsers]=useState([]);
+  const [allComments,setAllComments]=useState([]);
+  const [newUser,setNewUser]=useState({username:"",password:"",displayName:""});
+  const [config,setConfig]=useState({});
+  const [loading,setLoading]=useState(true);
+
+  const load=async()=>{
+    try{
+      const [s,u,c]=await Promise.all([API.get('/stats'),API.get('/users'),API.get('/comments')]);
+      setStats(s);setUsers(u);setAllComments(c);
+      if(user.role==='owner'){try{setConfig(await API.get('/config'))}catch(e){}}
+    }catch(e){showToast('Lỗi tải dashboard')}
+    setLoading(false);
+  };
+  useEffect(()=>{load()},[]);
+
+  const handleCreate=async()=>{
+    if(!newUser.username||!newUser.password)return;
+    try{await API.post('/users',newUser);setNewUser({username:"",password:"",displayName:""});showToast("Đã tạo tài khoản! ✅");load()}catch(e){showToast(e.message)}
+  };
+  const handleDelete=async(username)=>{try{await API.del('/users/'+username);showToast("Đã xoá!");load();onRefresh()}catch(e){showToast(e.message)}};
+  const handleToggle=async(username)=>{try{await API.patch('/users/'+username+'/role');showToast("Đã đổi role!");load()}catch(e){showToast(e.message)}};
+  const handleDeleteComment=async(id)=>{try{await API.del('/comments/'+id);showToast("Đã xoá bình luận!");load();onRefresh()}catch(e){showToast(e.message)}};
+  const handleSaveConfig=async()=>{try{await API.post('/config',config);showToast("Đã lưu cấu hình! ⚙️")}catch(e){showToast(e.message)}};
+
+  if(loading)return<div style={{textAlign:"center",padding:60}}><span className="spinner"/></div>;
+  const pct=stats?Math.min((stats.storageMB/500)*100,100):0;
+
+  return(
+    <div>
+      <h2 className="section-title">🛡️ Admin Dashboard</h2>
+      <p className="section-subtitle">Quản lý toàn bộ hệ thống</p>
+      <div className="dashboard">
+        <div className="dash-card"><h3>📊 Thống kê</h3>
+          <div className="stat-grid">
+            <div className="stat-item"><div className="stat-val">{stats?.users||0}</div><div className="stat-label">Thành viên</div></div>
+            <div className="stat-item"><div className="stat-val">{stats?.memories||0}</div><div className="stat-label">Ảnh</div></div>
+            <div className="stat-item"><div className="stat-val">{stats?.comments||0}</div><div className="stat-label">Bình luận</div></div>
+            <div className="stat-item"><div className="stat-val">{stats?.profiles||0}</div><div className="stat-label">Hồ sơ</div></div>
+          </div>
+        </div>
+        <div className="dash-card"><h3>💾 Cloudflare R2</h3>
+          <div style={{display:"flex",justifyContent:"space-between",fontSize:14,marginBottom:4}}><span>{stats?.storageMB||0} MB</span><span style={{color:"var(--text3)"}}>/ 500 MB</span></div>
+          <div className="storage-bar"><div className="storage-fill" style={{width:pct+"%"}}/></div>
+          <div style={{fontSize:12,color:"var(--text3)"}}>{pct>=80?"⚠️ Sắp hết!":"✅ Ổn định"}</div>
+        </div>
+        <div className="dash-card" style={{gridColumn:"1/-1"}}><h3>👥 Quản lý thành viên</h3>
+          <div style={{marginBottom:16}}><div className="add-form-row">
+            <div className="form-group"><label>Username</label><input className="form-input" value={newUser.username} onChange={e=>setNewUser({...newUser,username:e.target.value})} placeholder="username"/></div>
+            <div className="form-group"><label>Mật khẩu</label><input className="form-input" type="password" value={newUser.password} onChange={e=>setNewUser({...newUser,password:e.target.value})} placeholder="••••"/></div>
+            <div className="form-group"><label>Tên hiển thị</label><input className="form-input" value={newUser.displayName} onChange={e=>setNewUser({...newUser,displayName:e.target.value})} placeholder="Tên"/></div>
+            <button className="btn btn-accent3 btn-sm" onClick={handleCreate} style={{alignSelf:"flex-end",height:42}}>+ Tạo</button>
+          </div></div>
+          {users.map(u=><div className="user-list-item" key={u.username}><div className="user-info-row"><div className="nav-avatar">{u.username[0].toUpperCase()}</div><div><div style={{fontWeight:600,fontSize:14}}>{u.display_name||u.username}</div><div style={{fontSize:12,color:"var(--text3)"}}>@{u.username}</div></div><span className={"role-badge "+(u.role==="owner"?"role-owner":u.role==="admin"?"role-admin":"role-member")}>{u.role}</span></div>
+            <div style={{display:"flex",gap:6,alignItems:"center"}}>
+              {user.role==="owner"&&u.role!=="owner"&&<button className="role-toggle" onClick={()=>handleToggle(u.username)}>{u.role==="admin"?"↓ Member":"↑ Admin"}</button>}
+              {u.role!=="owner"&&(user.role==="owner"||(user.role==="admin"&&u.role==="member"))&&<button className="btn btn-danger btn-xs" onClick={()=>handleDelete(u.username)}>Xoá</button>}
+            </div></div>)}
+        </div>
+        <div className="dash-card"><h3>💬 Bình luận gần đây</h3>
+          <div style={{maxHeight:300,overflowY:"auto"}}>
+            {allComments.length===0&&<div style={{fontSize:13,color:"var(--text3)"}}>Chưa có</div>}
+            {allComments.slice(0,30).map(c=><div className="comment-manage-item" key={c.id}><div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}><div><strong>{c.username}</strong>: {c.text.slice(0,50)}{c.text.length>50?"...":""}<div style={{fontSize:11,color:"var(--text3)"}}>{new Date(c.created_at).toLocaleString("vi-VN")}</div></div><button className="btn btn-danger btn-xs" onClick={()=>handleDeleteComment(c.id)}>Xoá</button></div></div>)}
+          </div>
+        </div>
+        {user.role==="owner"&&<div className="dash-card"><h3>⚙️ Storage Config</h3>
+          <div className="config-group"><label>GitHub Token</label><input className="config-input" type="password" value={config.github_token||""} onChange={e=>setConfig({...config,github_token:e.target.value})} placeholder="ghp_xxxx..."/></div>
+          <div className="config-group"><label>GitHub Repo</label><input className="config-input" value={config.github_repo||""} onChange={e=>setConfig({...config,github_repo:e.target.value})} placeholder="user/repo"/></div>
+          <div className="config-group"><label>R2 Public URL (tuỳ chọn)</label><input className="config-input" value={config.r2_public_url||""} onChange={e=>setConfig({...config,r2_public_url:e.target.value})} placeholder="https://cdn.example.com"/></div>
+          <button className="btn btn-primary btn-sm" style={{width:"auto"}} onClick={handleSaveConfig}>💾 Lưu</button>
+        </div>}
+      </div>
+    </div>
+  );
+}
+
+// ─── Main App ───
+function App(){
+  const [loaded,setLoaded]=useState(false);
+  const [user,setUser]=useState(null);
+  const [authMode,setAuthMode]=useState("login");
+  const [authForm,setAuthForm]=useState({username:"",password:"",displayName:""});
+  const [authError,setAuthError]=useState("");
+  const [authLoading,setAuthLoading]=useState(false);
+  const [page,setPage]=useState("memories");
+  const [mobileNav,setMobileNav]=useState(false);
+  const [toast,setToast]=useState("");
+  const [lightbox,setLightbox]=useState(null);
+  const [memories,setMemories]=useState([]);
+  const [profiles,setProfiles]=useState([]);
+  const [comments,setComments]=useState([]);
+  const [reactions,setReactions]=useState([]);
+  const [uploading,setUploading]=useState(false);
+  const [profileForm,setProfileForm]=useState({name:"",nickname:"",photo:null});
+  const fileInputRef=useRef();
+  const profilePhotoRef=useRef();
+
+  const showToast=(msg)=>{setToast(msg);setTimeout(()=>setToast(""),2500)};
+
+  // ─── Init: check existing session ───
+  useEffect(()=>{
+    (async()=>{
+      if(API.token){
+        try{const data=await API.get('/auth/me');setUser(data.user)}catch(e){API.setToken(null)}
+      }
+      setLoaded(true);
+    })();
+  },[]);
+
+  // ─── Load data when logged in ───
+  const loadData=useCallback(async()=>{
+    if(!user)return;
+    try{
+      const [m,p,c,r]=await Promise.all([API.get('/memories'),API.get('/profiles'),API.get('/comments'),API.get('/reactions')]);
+      setMemories(m);setProfiles(p);setComments(c);setReactions(r);
+    }catch(e){console.error(e)}
+  },[user]);
+  useEffect(()=>{loadData()},[loadData]);
+
+  // ─── Auth ───
+  const handleLogin=async()=>{
+    setAuthError("");setAuthLoading(true);
+    try{
+      const data=await API.post('/auth/login',{username:authForm.username,password:authForm.password});
+      API.setToken(data.token);setUser(data.user);setAuthForm({username:"",password:"",displayName:""});
+    }catch(e){setAuthError(e.message)}
+    setAuthLoading(false);
+  };
+  const handleRegister=async()=>{
+    setAuthError("");setAuthLoading(true);
+    try{
+      const data=await API.post('/auth/register',{username:authForm.username,password:authForm.password,displayName:authForm.displayName});
+      API.setToken(data.token);setUser(data.user);setAuthForm({username:"",password:"",displayName:""});showToast("Đăng ký thành công! 🎉");
+    }catch(e){setAuthError(e.message)}
+    setAuthLoading(false);
+  };
+  const handleLogout=async()=>{try{await API.post('/auth/logout')}catch(e){}API.setToken(null);setUser(null);setPage("memories")};
+
+  // ─── Upload ───
+  const handleUpload=async(e)=>{
+    const files=Array.from(e.target.files);if(!files.length)return;
+    setUploading(true);
+    const fd=new FormData();files.forEach(f=>{if(f.size<=5*1024*1024)fd.append('images',f)});
+    try{await API.upload('/memories',fd);showToast("Tải lên thành công! 📸");await loadData()}catch(e){showToast(e.message)}
+    setUploading(false);e.target.value="";
+  };
+  const handleDeleteMemory=async(id)=>{try{await API.del('/memories/'+id);showToast("Đã xoá! 🗑️");await loadData()}catch(e){showToast(e.message)}};
+  const handleComment=async(memId,text)=>{try{const c=await API.post('/comments',{memoryId:memId,text});setComments(prev=>[...prev,{...c,memory_id:memId,text}])}catch(e){showToast(e.message)}};
+  const handleReact=async(memId,emoji)=>{
+    try{
+      const res=await API.post('/reactions',{memoryId:memId,emoji});
+      if(res.action==='added')setReactions(prev=>[...prev,{id:res.id,memory_id:memId,username:user.username,emoji}]);
+      else setReactions(prev=>prev.filter(r=>!(r.memory_id===memId&&r.username===user.username&&r.emoji===emoji)));
+    }catch(e){showToast(e.message)}
+  };
+
+  // ─── Profile ───
+  const handleAddProfile=async()=>{
+    if(!profileForm.name)return;
+    const fd=new FormData();fd.append('name',profileForm.name);fd.append('nickname',profileForm.nickname||'');
+    if(profileForm.photo)fd.append('photo',profileForm.photo);
+    try{await API.upload('/profiles',fd);showToast("Đã thêm! 👤");setProfileForm({name:"",nickname:"",photo:null});await loadData()}catch(e){showToast(e.message)}
+  };
+  const handleDeleteProfile=async(id)=>{try{await API.del('/profiles/'+id);showToast("Đã xoá!");await loadData()}catch(e){showToast(e.message)}};
+
+  if(!loaded)return<div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"100vh",background:"var(--bg)"}}><div style={{textAlign:"center"}}><div className="spinner" style={{width:40,height:40,borderWidth:4}}/><div style={{marginTop:16,fontSize:15,color:"var(--text3)"}}>Đang tải...</div></div></div>;
+
+  if(!user)return(
+    <div className="auth-page"><div className="auth-card">
+      <span className="decor">📚</span><h1>Kỷ Niệm Lớp</h1><div className="subtitle">Nơi lưu giữ những khoảnh khắc đẹp nhất</div>
+      {authError&&<div className="error-msg">{authError}</div>}
+      {authMode==="login"?<>
+        <div className="form-group"><label>Username</label><input className="form-input" value={authForm.username} onChange={e=>setAuthForm({...authForm,username:e.target.value})} placeholder="Nhập username" onKeyDown={e=>e.key==="Enter"&&handleLogin()}/></div>
+        <div className="form-group"><label>Mật khẩu</label><input className="form-input" type="password" value={authForm.password} onChange={e=>setAuthForm({...authForm,password:e.target.value})} placeholder="••••••" onKeyDown={e=>e.key==="Enter"&&handleLogin()}/></div>
+        <button className="btn btn-primary" onClick={handleLogin} disabled={authLoading}>{authLoading?<><span className="spinner"/> Đang xử lý...</>:"Đăng nhập"}</button>
+        <div className="auth-switch">Chưa có tài khoản? <span onClick={()=>{setAuthMode("register");setAuthError("")}}>Đăng ký</span></div>
+      </>:<>
+        <div className="form-group"><label>Username</label><input className="form-input" value={authForm.username} onChange={e=>setAuthForm({...authForm,username:e.target.value})} placeholder="Tối thiểu 3 ký tự"/></div>
+        <div className="form-group"><label>Tên hiển thị</label><input className="form-input" value={authForm.displayName} onChange={e=>setAuthForm({...authForm,displayName:e.target.value})} placeholder="Tên bạn muốn hiển thị"/></div>
+        <div className="form-group"><label>Mật khẩu</label><input className="form-input" type="password" value={authForm.password} onChange={e=>setAuthForm({...authForm,password:e.target.value})} placeholder="Tối thiểu 4 ký tự" onKeyDown={e=>e.key==="Enter"&&handleRegister()}/></div>
+        <button className="btn btn-primary" onClick={handleRegister} disabled={authLoading}>{authLoading?<><span className="spinner"/> Đang xử lý...</>:"Đăng ký"}</button>
+        <div className="auth-switch">Đã có tài khoản? <span onClick={()=>{setAuthMode("login");setAuthError("")}}>Đăng nhập</span></div>
+      </>}
+    </div></div>
+  );
+
+  const isAdmin=user.role==="owner"||user.role==="admin";
+  const navItems=[{id:"memories",label:"🖼️ Kỷ niệm",show:true},{id:"profiles",label:"👥 Lớp mình",show:true},{id:"dashboard",label:"🛡️ Dashboard",show:isAdmin}];
+
+  return(
+    <div className="app-wrap">
+      <nav className="navbar">
+        <div className="nav-brand"><span>📚</span> Kỷ Niệm Lớp</div>
+        <button className="mobile-nav-toggle" onClick={()=>setMobileNav(!mobileNav)}>☰</button>
+        <div className={"nav-links"+(mobileNav?" open":"")}>
+          {navItems.filter(n=>n.show).map(n=><button key={n.id} className={"nav-link"+(page===n.id?" active":"")} onClick={()=>{setPage(n.id);setMobileNav(false)}}>{n.label}</button>)}
+        </div>
+        <div className="nav-user"><div className="nav-avatar">{user.username[0].toUpperCase()}</div><button className="nav-logout" onClick={handleLogout}>Đăng xuất</button></div>
+      </nav>
+      <main className="main">
+        {page==="memories"&&<div>
+          <h2 className="section-title">🖼️ Kỷ niệm chung</h2><p className="section-subtitle">Những khoảnh khắc đáng nhớ của lớp mình</p>
+          <input type="file" accept="image/*" multiple hidden ref={fileInputRef} onChange={handleUpload}/>
+          <div className="upload-area" onClick={()=>!uploading&&fileInputRef.current&&fileInputRef.current.click()} style={uploading?{opacity:.6,cursor:"wait"}:{}}>
+            {uploading?<><div className="spinner" style={{width:32,height:32,borderWidth:3,marginBottom:8}}/><p><strong>Đang tải lên...</strong></p></>:<><div className="icon">📷</div><p><strong>Nhấn để tải ảnh lên</strong></p><p>Hỗ trợ nhiều ảnh • Tối đa 5MB/ảnh • Lưu trữ Cloudflare R2</p></>}
+          </div>
+          {memories.length===0?<div className="empty-state"><div className="icon">🌟</div><h3>Chưa có kỷ niệm nào</h3><p>Hãy là người đầu tiên chia sẻ ảnh lên nhé!</p></div>:
+          <div className="memories-grid">{memories.map(m=><MemoryCard key={m.id} mem={m} user={user} comments={comments} reactions={reactions} onComment={handleComment} onReact={handleReact} onDelete={handleDeleteMemory} onImageClick={setLightbox}/>)}</div>}
+        </div>}
+
+        {page==="profiles"&&<div>
+          <h2 className="section-title">👥 Lớp mình</h2><p className="section-subtitle">Hồ sơ từng thành viên trong lớp</p>
+          {isAdmin&&<div className="add-form"><div style={{fontWeight:600,marginBottom:12,fontSize:15}}>➕ Thêm hồ sơ mới</div>
+            <div className="add-form-row">
+              <div className="form-group"><label>Tên</label><input className="form-input" value={profileForm.name} onChange={e=>setProfileForm({...profileForm,name:e.target.value})} placeholder="Họ và tên"/></div>
+              <div className="form-group"><label>Biệt danh</label><input className="form-input" value={profileForm.nickname} onChange={e=>setProfileForm({...profileForm,nickname:e.target.value})} placeholder="Nickname (tuỳ chọn)"/></div>
+              <div className="form-group"><label>Ảnh</label><input type="file" accept="image/*" ref={profilePhotoRef} style={{display:"none"}} onChange={e=>{const f=e.target.files&&e.target.files[0];if(f)setProfileForm({...profileForm,photo:f})}}/><button className="btn btn-secondary btn-sm" style={{width:"100%"}} onClick={()=>profilePhotoRef.current&&profilePhotoRef.current.click()}>{profileForm.photo?"✅ "+profileForm.photo.name:"📷 Chọn ảnh"}</button></div>
+              <button className="btn btn-accent3 btn-sm" onClick={handleAddProfile} style={{alignSelf:"flex-end",height:42}}>Thêm</button>
+            </div>
+          </div>}
+          {profiles.length===0?<div className="empty-state"><div className="icon">👋</div><h3>Chưa có hồ sơ nào</h3><p>Hãy thêm các thành viên trong lớp nhé!</p></div>:
+          <div className="profiles-grid">{profiles.map((p,i)=><div className="profile-card" key={p.id} style={{animationDelay:i*0.05+"s"}}>
+            <div className="profile-img-wrap">
+              {p.photo_key?<img src={imgUrl(p.photo_key)} alt={p.name}/>:<div className="profile-placeholder">👤</div>}
+              {isAdmin&&<button onClick={()=>handleDeleteProfile(p.id)} style={{position:"absolute",top:8,right:8,background:"rgba(0,0,0,.5)",color:"#fff",border:"none",borderRadius:"50%",width:28,height:28,cursor:"pointer",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center"}}>✕</button>}
+            </div>
+            <div className="profile-info"><div className="profile-name">{p.name}</div>{p.nickname&&<div className="profile-nick">"{p.nickname}"</div>}</div>
+          </div>)}</div>}
+        </div>}
+
+        {page==="dashboard"&&isAdmin&&<AdminDashboard user={user} onRefresh={loadData} showToast={showToast}/>}
+      </main>
+      <Lightbox src={lightbox} onClose={()=>setLightbox(null)}/>
+      <Toast msg={toast}/>
+      <footer style={{textAlign:"center",padding:"24px",color:"var(--text3)",fontFamily:"'Google Sans',sans-serif",fontSize:16}}>✨ Kỷ niệm đẹp sẽ mãi trong tim ✨</footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
