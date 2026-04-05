@@ -1,0 +1,22 @@
+# ═══════════════════════════════════════════
+# Kỷ Niệm Lớp — Cloudflare Workers Config
+# ═══════════════════════════════════════════
+
+name = "ky-niem-lop"
+main = "src/worker.js"
+compatibility_date = "2024-12-01"
+
+# Static Assets (serves public/ folder)
+[assets]
+directory = "./public"
+
+# Cloudflare D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "ky-niem-lop-db"
+database_id = "YOUR_D1_DATABASE_ID"  # ← Thay bằng ID thật sau khi tạo
+
+# Cloudflare R2 Bucket
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "ky-niem-lop-images"   # ← Thay bằng tên bucket thật

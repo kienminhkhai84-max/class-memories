@@ -1,0 +1,17 @@
+{
+  "name": "ky-niem-lop",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Website kỷ niệm lớp học — Cloudflare Workers + D1 + R2",
+  "scripts": {
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "db:create": "npx wrangler d1 create ky-niem-lop-db",
+    "db:init": "npx wrangler d1 execute ky-niem-lop-db --file=./schema.sql --remote",
+    "db:init:local": "npx wrangler d1 execute ky-niem-lop-db --file=./schema.sql --local",
+    "r2:create": "npx wrangler r2 bucket create ky-niem-lop-images"
+  },
+  "devDependencies": {
+    "wrangler": "^3.99.0"
+  }
+}
